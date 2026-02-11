@@ -1,0 +1,47 @@
+Group #BossDefeatedRoot {
+  LayoutMode: Center;
+  Background: #000000;
+  Visible: false;
+
+  Group #Stack {
+    Anchor: (Width: 800, Height: 200);
+
+    Group #TopLine {
+      Anchor: (Top: 0, Left: 250, Width: 300, Height: 1);
+      Background: #c8a84e;
+    }
+
+    Label #BossNameLabel {
+      Style: (
+        FontSize: 52,
+        TextColor: #c8a84e,
+        RenderBold: true,
+        HorizontalAlignment: Center,
+        VerticalAlignment: End
+      );
+      Anchor: (Top: 12, Width: 800, Height: 75);
+      Text: "";
+    }
+
+    Group #MidLine {
+      Anchor: (Top: 96, Left: 175, Width: 450, Height: 2);
+      Background: #c8a84e;
+    }
+
+    Label #DefeatedLabel {
+      Style: (
+        FontSize: 24,
+        TextColor: #9a7b3a,
+        HorizontalAlignment: Center,
+        VerticalAlignment: Start
+      );
+      Anchor: (Top: 110, Width: 800, Height: 45);
+      Text: "G R E A T   F O E   V A N Q U I S H E D";
+    }
+
+    Group #BottomLine {
+      Anchor: (Top: 162, Left: 250, Width: 300, Height: 1);
+      Background: #c8a84e;
+    }
+  }
+}

@@ -1,0 +1,78 @@
+Group #BossBarRoot {
+  Anchor: (Top: 40, Width: 530, Height: 44);
+
+  Label #BossName {
+    Style: (
+      FontSize: 18,
+      TextColor: #e0d0b0,
+      RenderBold: true,
+      HorizontalAlignment: Center
+    );
+    Anchor: (Width: 530, Height: 22, Top: 0);
+    Text: "";
+  }
+
+  Group #BarContainer {
+    Anchor: (Top: 24, Width: 530, Height: 18);
+
+    Group #LeftCap {
+      Anchor: (Left: 0, Vertical: 0, Width: 15, Height: 14);
+
+      Group {
+        Anchor: (Right: 0, Vertical: 0, Width: 3, Height: 14);
+        Background: #b8943f;
+      }
+
+      Group {
+        Anchor: (Right: 5, Vertical: 0, Width: 2, Height: 10);
+        Background: #8a6e2f;
+      }
+
+      Group {
+        Anchor: (Right: 9, Vertical: 0, Width: 2, Height: 6);
+        Background: #5a4420;
+      }
+    }
+
+    Group #BarBackground {
+      Anchor: (Left: 15, Width: 500, Height: 14, Vertical: 0);
+      Background: #1a1a1a;
+      OutlineColor: #5a4420;
+      OutlineSize: 1;
+
+      Group #BarTrail {
+        Anchor: (Left: 0, Width: 500, Height: 14);
+        Background: (Color: #cc6600);
+      }
+
+      Group #BarFill {
+        Anchor: (Left: 0, Width: 500, Height: 14);
+        Background: (Color: #8b0000);
+      }
+
+      Group #BarSheen {
+        Anchor: (Left: 0, Width: 500, Height: 3, Top: 0);
+        Background: #ffffff14;
+      }
+    }
+
+    Group #RightCap {
+      Anchor: (Right: 0, Vertical: 0, Width: 15, Height: 14);
+
+      Group {
+        Anchor: (Left: 0, Vertical: 0, Width: 3, Height: 14);
+        Background: #b8943f;
+      }
+
+      Group {
+        Anchor: (Left: 5, Vertical: 0, Width: 2, Height: 10);
+        Background: #8a6e2f;
+      }
+
+      Group {
+        Anchor: (Left: 9, Vertical: 0, Width: 2, Height: 6);
+        Background: #5a4420;
+      }
+    }
+  }
+}

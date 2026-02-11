@@ -1,0 +1,21 @@
+{
+  "Group": "${group}",
+  "Name": "${name}",
+  "Version": "${version}",
+  "Description": "${description}",
+  "Authors": [
+    {
+      "Name": "Server Admin"
+    }
+  ],
+  "ServerVersion": "${server_version}",
+  "Dependencies": {
+    "Hytale:EntityModule": "*"
+  },
+  "OptionalDependencies": {
+    "com.hcmultihud:HC_MultiHud": "*"
+  },
+  "DisabledByDefault": false,
+  "Main": "${entry_point}",
+  "IncludesAssetPack": true
+}

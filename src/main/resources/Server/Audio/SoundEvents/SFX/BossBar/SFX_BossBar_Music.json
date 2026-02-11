@@ -1,0 +1,14 @@
+{
+  "Layers": [
+    {
+      "Files": [
+        "Sounds/BossBar/shadowforge_convergence.ogg"
+      ],
+      "Volume": 6.0,
+      "Looping": false
+    }
+  ],
+  "Volume": -2,
+  "PreventSoundInterruption": true,
+  "MaxDistance": 100
+}

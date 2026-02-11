@@ -1,0 +1,11 @@
+{
+  "Conditions": {
+    "Never": true
+  },
+  "Music": {
+    "Tracks": [
+      "Sounds/BossBar/shadowforge_convergence.ogg"
+    ]
+  },
+  "AudioCategory": "AudioCat_Music"
+}

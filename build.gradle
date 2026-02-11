@@ -1,0 +1,52 @@
+plugins {
+    id 'java'
+}
+
+version = project.version
+
+java {
+    toolchain.languageVersion = JavaLanguageVersion.of(java_version)
+    withSourcesJar()
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+
+    // Path to HytaleServer.jar
+    def localServerJar = file("${rootProject.projectDir}/../../server-files/Server/HytaleServer.jar")
+    def serverJarPath = localServerJar.exists()
+        ? localServerJar.absolutePath
+        : "$hytaleHome/$patchline/package/game/$game_build/Server/HytaleServer.jar"
+    implementation(files(serverJarPath))
+
+    // HC_MultiHud plugin (optional - for multiple HUD support)
+    def hcMultiHudJar = file("${rootProject.projectDir}/../HC_MultiHud/build/libs/HC_MultiHud-${project.version}.jar")
+    if (hcMultiHudJar.exists()) {
+        compileOnly(files(hcMultiHudJar))
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
+
+processResources {
+    var expandProps = [
+        'name'          : project.name,
+        'version'       : project.version,
+        'group'         : project.group,
+        'description'   : mod_description,
+        'server_version': server_version,
+        'entry_point'   : entry_point
+    ]
+
+    filesMatching(['manifest.json']) {
+        expand expandProps
+    }
+    inputs.properties(expandProps)
+}
