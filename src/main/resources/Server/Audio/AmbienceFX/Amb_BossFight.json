@@ -4,7 +4,7 @@
   },
   "Music": {
     "Tracks": [
-      "Sounds/BossBar/shadowforge_convergence.ogg"
+      "Music/BossBar/shadowforge_convergence.ogg"
     ]
   },
   "AudioCategory": "AudioCat_Music"

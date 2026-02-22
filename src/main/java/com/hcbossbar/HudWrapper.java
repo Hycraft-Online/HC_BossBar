@@ -35,16 +35,25 @@ public class HudWrapper {
         MULTIPLE_HUD_AVAILABLE = available;
     }
 
-    public static void setCustomHud(Player player, PlayerRef playerRef, String hudId, CustomUIHud hud) {
+    /**
+     * @return true if accepted, false if rejected (safe mode).
+     */
+    public static boolean setCustomHud(Player player, PlayerRef playerRef, String hudId, CustomUIHud hud) {
         if (MULTIPLE_HUD_AVAILABLE) {
             try {
-                setCustomHudMethod.invoke(multipleHudInstance, player, playerRef, hudId, hud);
+                Object result = setCustomHudMethod.invoke(multipleHudInstance, player, playerRef, hudId, hud);
+                if (result instanceof Boolean && !(Boolean) result) {
+                    return false;
+                }
+                return true;
             } catch (Exception e) {
                 LOGGER.at(Level.WARNING).log("Error setting HUD via HC_MultiHud: " + e.getMessage());
                 player.getHudManager().setCustomHud(playerRef, hud);
+                return true;
             }
         } else {
             player.getHudManager().setCustomHud(playerRef, hud);
+            return true;
         }
     }
 
