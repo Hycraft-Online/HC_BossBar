@@ -107,9 +107,21 @@ public class HC_BossBarPlugin extends JavaPlugin {
             BossTracker tracker = entry.getValue();
             World world = tracker.getWorld();
 
+            if (world == null) {
+                activeTrackers.remove(playerUuid);
+                continue;
+            }
+
             try {
                 world.execute(() -> {
                     Store<EntityStore> store = world.getEntityStore().getStore();
+
+                    // Validate player entity ref before doing any work
+                    Ref<EntityStore> playerEntityRef = store.getExternalData().getRefFromUUID(playerUuid);
+                    if (playerEntityRef == null || !playerEntityRef.isValid()) {
+                        activeTrackers.remove(playerUuid);
+                        return;
+                    }
 
                     // Resolve boss ref from UUID
                     Ref<EntityStore> bossRef = store.getExternalData().getRefFromUUID(tracker.getBossEntityUuid());
