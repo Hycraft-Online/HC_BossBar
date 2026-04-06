@@ -19,14 +19,16 @@ import javax.annotation.Nonnull;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 
 public class HC_BossBarPlugin extends JavaPlugin {
 
-    private static HC_BossBarPlugin instance;
+    private static volatile HC_BossBarPlugin instance;
 
     private final Map<UUID, BossTracker> activeTrackers = new ConcurrentHashMap<>();
+    private ScheduledFuture<?> updateTask;
 
     public HC_BossBarPlugin(@Nonnull JavaPluginInit init) {
         super(init);
@@ -49,14 +51,19 @@ public class HC_BossBarPlugin extends JavaPlugin {
 
     @Override
     public void start() {
-        HytaleServer.SCHEDULED_EXECUTOR.scheduleAtFixedRate(this::updateAllBossBars,
+        updateTask = HytaleServer.SCHEDULED_EXECUTOR.scheduleAtFixedRate(this::updateAllBossBars,
             250, 250, TimeUnit.MILLISECONDS);
         getLogger().at(Level.INFO).log("HC_BossBar started");
     }
 
     @Override
     public void shutdown() {
+        if (updateTask != null) {
+            updateTask.cancel(false);
+            updateTask = null;
+        }
         activeTrackers.clear();
+        instance = null;
     }
 
     public void markBoss(Player player, PlayerRef playerRef, World world, UUID bossUuid, String bossName) {
